@@ -1,0 +1,48 @@
+﻿<!--<div ng-include="'app/common/templates/map/map.html'" ng-init="vm.match = vm.vm.match"></div>-->
+<div class="match">
+
+
+    <div class="map" ng-show="vm.match">
+        <img ng-src="{{::vm.match.mapVariantInfoMapImageUrl}}" ng-if="vm.match.mapVariantInfoMapImageUrl"/>
+        <img ng-src="{{::vm.match.mapImageUrl}}" ng-if="!vm.match.mapVariantInfoMapImageUrl"/>
+        <div class="mapInfo">
+            <div>
+                <div ng-style="{'mask-image': 'url(' + vm.match.gameVariantInfoIconUrl + ')','-webkit-mask-image': 'url(' + vm.match.gameVariantInfoIconUrl + ')','background': vm.match.playerTeamColor.color}">
+                    <!--<img ng-src="{{::vm.match.gameVariantInfoIconUrl}}"/>-->
+                </div>
+                <div>
+                    <div>
+                        {{::vm.match.gameVariantInfoName}}
+                    </div>
+                    <div>
+                        {{::vm.match.playlistName}}
+                    </div>
+                </div>
+                <div ng-if="vm.match.mapVariantInfoName">
+                    {{::vm.match.mapVariantInfoName}}
+                </div>
+                <div ng-if="!vm.match.mapVariantInfoName">
+                    {{::vm.match.mapName}}
+                </div>
+            </div>
+            <div>
+                <div>
+                    <img ng-src="{{::vm.match.playerTeamColor.iconUrl}}"/>
+                </div>
+                <div ng-switch on="vm.match.result">
+                    <div ng-switch-when="Won">Victory</div>
+                    <div ng-switch-when="Lost">Defeat</div>
+                    <div ng-switch-when="Tied">Tied</div>
+                    <div ng-switch-default>DNF</div>
+                </div>
+                <div>
+                    {{::vm.match.completedDate}} &nbsp;&nbsp;
+                    {{::vm.match.matchDuration}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div ng-include="'app/common/templates/carnageReport/' + vm.match.template"></div>
+</div>

@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0-*",
+  "description": "HaloSharp Class Library",
+  "authors": [ "darickc" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "frameworks": {
+    "net451": {
+      "frameworkAssemblies": {
+        "System.Net.Http": "4.0.0.0",
+        "System.Runtime.Serialization": "4.0.0.0",
+        "System.XML": "4.0.0.0"
+      }
+    }
+  },
+  "dependencies": {
+    "Newtonsoft.Json": "8.0.3"
+  }
+}

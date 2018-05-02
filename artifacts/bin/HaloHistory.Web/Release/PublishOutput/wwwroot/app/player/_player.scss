@@ -1,0 +1,17 @@
+﻿
+
+
+.playerView {
+    width: 100%;
+    height: 100%;
+
+    .player {
+        text-align: center;
+
+        > div:last-child {
+            > div {
+                display: inline-block;
+            }
+        }
+    }
+}

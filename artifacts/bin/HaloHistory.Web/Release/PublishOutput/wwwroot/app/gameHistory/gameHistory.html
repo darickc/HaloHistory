@@ -1,0 +1,63 @@
+﻿
+
+<div class="gameHistory">
+
+    <div ui-view>
+        <div class="matches">
+            <div class="gamemodes">
+                <div class="dataItem"><a ui-sref="main.player.gameHistory({mode:'All',start:null})" ui-sref-active="selected">All</a></div>
+                <div class="dataItem"><a ui-sref="main.player.gameHistory({mode:'Arena',start:null})" ui-sref-active="selected">Arena</a></div>
+                <!--<div class="dataItem"><a href="" ng-click="vm.getMatchesForGamemode('Campaign')" ng-class="{'selected':vm.gameMode=='Campaign'}">Campaign</a></div>-->
+                <div class="dataItem"><a ui-sref="main.player.gameHistory({mode:'Custom',start:null})" ui-sref-active="selected">Custom</a></div>
+                <div class="dataItem"><a ui-sref="main.player.gameHistory({mode:'Warzone',start:null})" ui-sref-active="selected">Warzone</a></div>
+            </div>
+            <div class="nav">
+                <div class="dataLabel">
+                    <a href="" ui-sref="main.player.gameHistory({start:vm.matches.start-vm.matches.count== 0 ? null : vm.matches.start-vm.matches.count})" ng-show="vm.matches.start > 0"><i class="fa fa-chevron-left" aria-hidden="true"></i><i class="fa fa-chevron-left" aria-hidden="true"></i> Prev</a>
+                </div>
+                <div class="dataLabel">
+                    <a href="" ui-sref="main.player.gameHistory({start:vm.matches.start+vm.matches.resultsCount})" ng-show="vm.matches.resultsCount === vm.matches.count">Next <i class="fa fa-chevron-right" aria-hidden="true"></i><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                </div>
+
+
+            </div>
+
+            <div class="matchesList">
+                <div ng-repeat="match in vm.matches.results" ui-sref=".match({gameMode:match.gameMode,id:match.matchId})">
+                    <div ng-include="'app/common/templates/map/map.html'"></div>
+
+                    <div class="playerStats">
+                        <div>
+                            <div class="dataItem">{{::match.player.totalKills}}</div>
+                            <div class="dataLabel">Kills</div>
+                        </div>
+
+                        <div>
+                            <div class="dataItem">{{::match.player.totalDeaths}}</div>
+                            <div class="dataLabel">Deaths</div>
+                        </div>
+                        <div>
+                            <div class="dataItem">{{::match.player.totalAssists}}</div>
+                            <div class="dataLabel">Assists</div>
+                        </div>
+                    </div>
+
+                    <div class="teams">
+                        <div class="teamHeading" ng-repeat="team in ::match.teams">
+                            <div ng-show="team.id == match.player.teamId" ng-style="{'background': team.teamColor.color}">
+
+                            </div>
+                            <div>
+                                <img ng-src="{{team.teamColor.iconUrl}}" style="max-width: 50px;" />
+                            </div>
+                            <div class="dataItem">
+                                {{team.teamColor.name}}
+                                {{team.score}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

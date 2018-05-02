@@ -1,0 +1,97 @@
+﻿
+@font-face {
+    font-family: BaksheeshRegular;
+    src: url("../../fonts/BAKSHEESHRegular.TTF");
+}
+@font-face {
+    font-family: BaksheeshBold;
+    src: url("../../fonts/Baksheesh Bold.TTF");
+}
+body,html,.cartographer{
+    width:100%;
+    height:100%;
+    >div{
+        width:100%;
+    height:100%;
+    }
+    overflow-y:hidden;
+}
+body {
+    font-family:"BaksheeshRegular";
+}
+
+.cartographer{
+    -webkit-overflow-scrolling:touch;
+    overflow-y: scroll;
+}
+
+
+.dataItem{
+    font-size:22px;
+    line-height:23px;
+    margin-bottom:4px;
+    text-transform:uppercase;
+}
+.dataLabel{
+     font-size:11px;
+    line-height:15px;
+    color:#6c96cc;
+    font-family:"BaksheeshBold";
+    text-transform:uppercase;
+}
+.miniProgressBg{
+    padding-bottom:5px;
+    margin-bottom:0;
+    border-bottom:3px solid rgba(23, 141, 216, 0.5);
+    &.thick{
+        border-bottom-width:5px;
+    }
+}
+.miniProgressBar{
+    border-bottom:3px solid rgba(23, 141, 216, 1);
+    margin-top:-3px;
+    &.thick{
+        border-bottom-width:5px;
+        margin-top:-5px;
+    }
+}
+.miniProgressBarGreen{
+    border-bottom:3px solid rgb(145, 214, 66);
+    margin-top:-3px;
+    &.thick{
+        border-bottom-width:5px;
+        margin-top:-5px;
+    }
+}
+/*.miniProgressBar2{
+    border-bottom:3px solid rgba(23, 141, 216, 0.5);
+    margin-top:-6px;
+}*/
+
+.miniProgressBgRed{
+    padding-bottom:5px;
+    border-bottom:3px solid rgba(235, 27, 35, 0.5);
+     &.thick{
+        border-bottom-width:5px;
+        margin-top:-5px;
+    }
+}
+.miniProgressBarRed{
+    border-bottom:3px solid rgba(235, 27, 35, 1);
+    margin-top:-3px;
+     &.thick{
+        border-bottom-width:5px;
+        margin-top:-5px;
+    }
+}
+
+a,a:visited{
+    text-decoration: none;
+    color:rgba(23, 141, 216, 1);
+}
+
+@import "player/_player.scss";
+@import "gameHistory/_gameHistory.scss";
+@import "common/templates/map/_map.scss";
+@import "match/_match.scss";
+@import "main/_main.scss";

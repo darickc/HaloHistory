@@ -1,0 +1,9 @@
+﻿<div>
+    <img ng-src="{{player.profile.emblemImageUri}}" />
+</div>
+<div class="dataItem">{{::player.gamerTag}}</div>
+<div>
+    <div ng-if="player.previousCsr">
+        <img ng-src="{{::player.previousCsr.iconImageUrl}}" ng-attr-title="{{player.previousCsr.name}} {{player.currentCsr.csr > 0 ? player.currentCsr.csr : player.currentCsr.tier}}" />
+    </div>
+</div>

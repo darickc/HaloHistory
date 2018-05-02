@@ -1,0 +1,97 @@
+﻿<div class="teams">
+    <div ng-repeat="team in ::vm.match.teams">
+        <div class="titles">
+            <div class="playerHeading">
+                <div>
+                </div>
+                <div class="dataLabel">Score</div>
+                <div class="dataLabel">NPC Kills</div>
+                <div class="dataLabel">Deaths</div>
+                <div class="dataLabel">Assists</div>
+                <div class="dataLabel">Boss Takedowns</div>
+                <div class="dataLabel">Rounds Survived</div>
+                <div class="dataLabel">Rounds Completed</div>
+                <div></div>
+            </div>
+        </div>
+
+        <div class="players">
+            <div ng-repeat="player in team.players" id="stats{{::player.rank}}">
+                <div class="playerHeading" ng-class="{'dnf':player.dnf}">
+                    <div ng-include="'app/common/templates/player/player.html'">
+                    </div>
+                    <div>
+                        <div class="miniProgressBg">
+                            <div class="dataItem">
+                                {{::player.score}}
+                            </div>
+                            <div class="dataLabel">Score</div>
+                        </div>
+                        <div class="miniProgressBar" ng-style="{'width': player.scorePercent + '%'}"></div>
+                    </div>
+                    <div>
+                        <div class="miniProgressBg">
+                            <div class="dataItem">
+                                {{::player.kills}}
+                            </div>
+                            <div class="dataLabel">NPC Kills</div>
+                        </div>
+                        <div class="miniProgressBar" ng-style="{'width': player.killPercent + '%'}"></div>
+                    </div>
+                    <div>
+                        <div class="miniProgressBg">
+                            <div class="dataItem">
+                                {{::player.totalDeaths}}
+                            </div>
+                            <div class="dataLabel">Deaths</div>
+                        </div>
+                        <div class="miniProgressBarRed" ng-style="{'width': player.deathPercent + '%'}"></div>
+                    </div>
+                    <div>
+                        <div class="miniProgressBg">
+                            <div class="dataItem">
+                                {{::player.totalAssists}}
+                            </div>
+                            <div class="dataLabel">Assists</div>
+                        </div>
+                        <div class="miniProgressBar" ng-style="{'width': player.assistPercent + '%'}"></div>
+                    </div>
+                    <div>
+                        <div  class="miniProgressBg">
+                            <div class="dataItem">
+                                {{::player.bossTakedowns}}
+                            </div>
+                            <div class="dataLabel">Boss Takedowns</div>
+                        </div>
+                        <div class="miniProgressBar" ng-style="{'width': player.bossTakedownsPercent + '%'}"></div>
+                    </div>
+                    <div>
+                        <div class="miniProgressBg">
+                            <div class="dataItem">
+                                {{::player.roundsSurvived}}
+                            </div>
+                            <div class="dataLabel">Rounds Survived</div>
+                        </div>
+                        <div class="miniProgressBar" ng-style="{'width': player.roundsSurvivedPercent + '%'}"></div>
+                    </div>
+                    <div>
+                        <div class="miniProgressBg">
+                            <div class="dataItem">
+                                {{::player.roundsComplete}}
+                            </div>
+                            <div class="dataLabel">Rounds Completed</div>
+                        </div>
+                        <div class="miniProgressBar" ng-style="{'width': player.roundsCompletePercent + '%'}"></div>
+                    </div>
+                    <div>
+                        <a href="" ng-click="vm.showDetails(player)" go-to="stats{{player.rank}}">
+                            <span ng-hide="player.showDetails"><i class="fa fa-plus-square-o" aria-hidden="true"></i><span> More Stats</span></span>
+                            <span ng-show="player.showDetails"><i class="fa fa-minus-square-o" aria-hidden="true"></i><span> Hide Stats</span></span>
+                        </a>
+                    </div>
+                </div>
+                <div ng-include="'app/common/templates/player/playerDetails.html'"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0-*",
+  "description": "HaloHistory.Business Class Library",
+  "authors": [ "darickc" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "frameworks": {
+    "net451": { }
+  },
+  "dependencies": {
+    "AutoMapper": "4.2.1",
+    "HaloSharp": "1.0.0-*",
+    "Newtonsoft.Json": "8.0.3"
+  }
+}

@@ -1,0 +1,106 @@
+﻿
+.matches {
+    margin-bottom:60px;
+    .gamemodes {
+        margin: 5px;
+        display: flex;
+        justify-content: space-around;
+        .selected{
+            font-weight:bold
+        }
+    }
+
+    .nav {
+        margin: 5px;
+        display: flex;
+
+        > div {
+            flex: 1 50%;
+        }
+
+        > div:last-child {
+            text-align: right;
+        }
+    }
+
+    .matchesList {
+
+        > div {
+            margin-top: 20px;
+            cursor:pointer;
+            .playerStats {
+                display: flex;
+                justify-content: space-around;
+
+                > div {
+                    padding: 4px;
+                }
+            }
+
+            .teams {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+    }
+}
+
+div.teamHeading {
+    flex: 1 50%;
+    display: flex;
+
+    > div {
+        align-self: center;
+    }
+
+    > div:first-child {
+        width: 4px;
+        height: 50px;
+    }
+
+    > div:last-child {
+        flex: 1;
+    }
+}
+
+/*.matchState {
+    .gameHistory {
+        .matches {
+            display: none;
+        }
+    }
+}*/
+
+@media screen and (min-width: 768px) {
+    .gameHistory{
+        max-width:768px;
+        margin:auto;
+    }
+}
+
+
+
+/*.gameHistory {
+    display: flex;
+
+    .matches {
+        flex: 1 100%;
+    }
+
+    .match {
+        flex: 1 0%;
+    }
+}
+
+.matchState {
+    .gameHistory {
+        .matches {
+            flex: 1 0%;
+            overflow-x: hidden;
+        }
+
+        .match {
+            flex: 1 100%;
+        }
+    }
+}*/

@@ -1,0 +1,99 @@
+﻿<div class="teams">
+    <div ng-repeat="team in ::vm.match.teams">
+        <div class="titles">
+            <div class="playerHeading">
+                <div>
+                </div>
+                <div class="dataLabel">Bases Captured</div>
+                <div class="dataLabel">Spartan Kills</div>
+                <div class="dataLabel">NPC Kills</div>
+                <div class="dataLabel">Deaths</div>
+                <div class="dataLabel">Assists</div>
+                <div class="dataLabel">KDA</div>
+                
+                <div></div>
+            </div>
+        </div>
+
+        <div class="teamHeading">
+            <div ng-style="{'background': team.teamColor.color}">
+            </div>
+            <div>
+                <img ng-src="{{::team.teamColor.iconUrl}}" />
+            </div>
+            <div>
+                <div class="dataItem">{{::team.teamColor.name}} {{::team.score}}</div>
+            </div>
+        </div>
+        <div class="players">
+            <div ng-repeat="player in team.players" id="stats{{::player.rank}}">
+                <div class="playerHeading" ng-class="{'dnf':player.dnf}">
+                    <div ng-include="'app/common/templates/player/player.html'">
+                    </div>
+                    <div>
+                        <div class="miniProgressBg">
+                            <div class="dataItem">
+                                {{::player.basesCaptured}}
+                            </div>
+                            <div class="dataLabel">Bases Captured</div>
+                        </div>
+                        <div class="miniProgressBar" ng-style="{'width': player.BasesCapturedPercent + '%'}"></div>
+                    </div>
+                    <div>
+                        <div class="miniProgressBg">
+                            <div class="dataItem">
+                                {{::player.totalSpartanKills}}
+                            </div>
+                            <div class="dataLabel">Spartan Kills</div>
+                        </div>
+                        <div class="miniProgressBar" ng-style="{'width': player.totalSpartanKillPercent + '%'}"></div>
+                    </div>
+                    <div>
+                        <div class="miniProgressBg">
+                            <div class="dataItem">
+                                {{::player.npcKills}}
+                            </div>
+                            <div class="dataLabel">NPC Kills</div>
+                        </div>
+                        <div class="miniProgressBar" ng-style="{'width': player.npcKillPercent + '%'}"></div>
+                    </div>
+                    <div>
+                        <div class="miniProgressBg">
+                            <div class="dataItem">
+                                {{::player.totalDeaths}}
+                            </div>
+                            <div class="dataLabel">Deaths</div>
+                        </div>
+                        <div class="miniProgressBarRed" ng-style="{'width': player.deathPercent + '%'}"></div>
+                    </div>
+                    <div>
+                        <div class="miniProgressBg">
+                            <div class="dataItem">
+                                {{::player.totalAssists}}
+                            </div>
+                            <div class="dataLabel">Assists</div>
+                        </div>
+                        <div class="miniProgressBar" ng-style="{'width': player.assistPercent + '%'}"></div>
+                    </div>
+                    <div>
+                        <div ng-class="{miniProgressBg:player.kda>=0,miniProgressBgRed:player.kda<0}">
+                            <div class="dataItem">
+                                {{::player.kda}}
+                            </div>
+                            <div class="dataLabel">KDA</div>
+                        </div>
+                        <div ng-class="{miniProgressBar:player.kda>=0,miniProgressBarRed:player.kda<0}" ng-style="{'width': player.kdaPercent + '%'}"></div>
+                    </div>
+                    
+                    <div>
+                        <a href="" ng-click="vm.showDetails(player)" go-to="stats{{player.rank}}">
+                            <span ng-hide="player.showDetails"><i class="fa fa-plus-square-o" aria-hidden="true"></i><span> More Stats</span></span>
+                            <span ng-show="player.showDetails"><i class="fa fa-minus-square-o" aria-hidden="true"></i><span> Hide Stats</span></span>
+                        </a>
+                    </div>
+                </div>
+                <div ng-include="'app/common/templates/player/playerDetails.html'"></div>
+            </div>
+        </div>
+    </div>
+</div>

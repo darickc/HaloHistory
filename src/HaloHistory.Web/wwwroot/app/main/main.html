@@ -1,0 +1,23 @@
+﻿
+
+<div ui-view>
+    <div class="playerForm">
+        <div>
+            <form novalidate name="form" ng-submit="vm.setUser(form)">
+                <div class="title">Halo History</div>
+                <div>
+                    Please enter gamer tag you wish to view:
+                </div>
+                <input type="text" name="gamerTag" ng-model="vm.gamerTag" required autofocus/>
+                <input type="submit" value="Search"/>
+                <div ng-show="vm.canRemember">
+                    <input id="rememberMe" type="checkbox" ng-model="vm.rememberMe"/>
+                    <label for="rememberMe">Remember me</label>
+                </div>
+                <div class="error" ng-show="vm.error">There was an error with the gamer tag entered.<br/> Please enter a valid gamer tag.</div>
+                <div class="error" ng-show="form.gamerTag.$invalid && form.submitted">Please enter a valid gamer tag.</div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,207 @@
+﻿<div class="playerDetails" ng-show="player.showDetails">
+    <div class="playerStats">
+        <div>
+            <img ng-src="{{player.profile.spartanImageUri}}" />
+        </div>
+        <div>
+            <div class="csr" ng-if="player.currentCsr">
+                <img ng-src="{{::player.currentCsr.iconImageUrl}}" />
+                <div>
+                    <div class="dataItem thick" ng-class="{'miniProgressBg':player.currentCsr.designationId>0 && !player.currentCsr.csr}">
+                        {{::player.currentCsr.name}}
+                        <span ng-if="player.currentCsr.csr">{{player.currentCsr.csr}}</span>
+                        <span ng-if="!player.currentCsr.csr">{{player.currentCsr.tier}}</span>
+                    </div>
+                    <div ng-if="!player.currentCsr.csr">
+                        <div ng-if="player.currentCsr.designationId>0 && player.currentCsr.increased">
+                            <div class="miniProgressBarGreen thick" ng-style="{'width': player.currentCsr.percentToNextTier + '%'}"></div>
+                            <div class="miniProgressBar thick" ng-if="player.previousCsr" ng-style="{'width': player.previousCsr.percentToNextTier + '%'}"></div>
+                        </div>
+                        <div ng-if="player.currentCsr.designationId>0 && !player.currentCsr.increased">
+                            <div class="miniProgressBarRed thick" ng-style="{'width': player.previousCsr.percentToNextTier + '%'}"></div>
+                            <div class="miniProgressBar thick" ng-style="{'width': player.currentCsr.percentToNextTier + '%'}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="xpInfo" ng-if="player.xpInfo">
+            <div>
+                <div class="miniProgressBg thick dataItem">
+                    SR{{::player.xpInfo.spartanRank}}
+                </div>
+                <div class="miniProgressBarGreen thick" ng-style="{'width': player.xpInfo.currentPercent + '%'}"></div>
+                <div class="miniProgressBar thick" ng-style="{'width': player.xpInfo.previousPercent + '%'}"></div>
+                <div class="dataLabel">
+                    {{::player.xpInfo.currentRankXp}} / {{::player.xpInfo.xpToNextRank}} XP
+                </div>
+            </div>
+            <div>
+                <div class="dataItem">{{::player.xpInfo.xpEarned}}</div>
+                <div class="dataLabel">xp earned</div>
+            </div>
+            <div>
+                <div class="dataItem">{{::player.creditsEarned.totalCreditsEarned}}</div>
+                <div class="dataLabel">req points earned</div>
+            </div>
+        </div>
+
+    </div>
+    <div>
+        <div class="dataItem">Enemies:</div>
+        <div>
+            <div ng-repeat="enemy in player.enemies">
+                <div class="stat">
+                    <div class="inline">
+                        <div ng-class="{'nonPlayer':!enemy.isPlayer}">
+                            <img ng-if="enemy.isPlayer" ng-src="{{enemy.profile.emblemImageUri}}"/>
+                            <img ng-if="!enemy.isPlayer" ng-src="{{enemy.imageUrl}}"/>
+                        </div>
+                        <div class="dataItem">
+                            {{::enemy.name}}
+                        </div>
+                    </div>
+                    <div>
+                        <div class="dataItem">
+                            {{::enemy.kills}}
+                        </div>
+                        <div class="dataLabel miniProgressBg">Kills</div>
+                        <div class="miniProgressBar" ng-style="{'width': enemy.killPercent + '%'}"></div>
+                    </div>
+                    <div>
+                        <div class="dataItem">
+                            {{::enemy.deaths}}
+                        </div>
+                        <div class="dataLabel miniProgressBgRed">Deaths</div>
+                        <div class="miniProgressBarRed" ng-style="{'width': enemy.deathPercent + '%'}"></div>
+                    </div>
+                    <div>
+                        <div class="dataItem">
+                            {{::enemy.spreadSign}}{{::enemy.spread}}
+                        </div>
+                        <div class="dataLabel" ng-class="{'miniProgressBgRed':enemy.spreadSign=='-','miniProgressBg':enemy.spreadSign!='-'}">spread</div>
+                        <div ng-class="{'miniProgressBarRed':enemy.spreadSign=='-','miniProgressBar':enemy.spreadSign!='-'}" ng-style="{'width': enemy.spreadPercent + '%'}"></div>
+                    </div>
+                    <div class="moreInfo">
+                        <a href="" ng-click="enemy.moreInfo = !enemy.moreInfo" ng-if="enemy.weaponKills.length">
+                            <span ng-hide="enemy.moreInfo"><i class="fa fa-plus-square-o" aria-hidden="true"></i></span>
+                            <span ng-show="enemy.moreInfo"><i class="fa fa-minus-square-o" aria-hidden="true"></i></span>
+                        </a>
+                    </div>
+                </div>
+                <div ng-if="enemy.weaponKills.length" ng-show="enemy.moreInfo" class="weaponKills">
+                    <div class="stat" ng-repeat="weaponKill in enemy.weaponKills">
+                        <div>
+                            <img ng-src="{{weaponKill.smallIconImageUrl}}"/>
+                            <div class="dataItem">
+                                {{::weaponKill.name}}
+                            </div>
+                        </div>
+                        <div>
+                            <div class="dataItem">
+                                {{::weaponKill.kills}}
+                            </div>
+                            <div class="dataLabel">Kills</div>
+                        </div>
+                        <div>
+                            <div class="dataItem">
+                                {{::weaponKill.deaths}}
+                            </div>
+                            <div class="dataLabel">Deaths</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div>
+        <div class="dataItem">Weapons:</div>
+        <div class="weapons">
+            <div class="stat" ng-repeat="weapon in player.weapons">
+                <div class="dataItem weapon">
+                    <img ng-src="{{::weapon.weapon.smallIconImageUrl}}" />
+                    <div>
+                        {{::weapon.weapon.name}}
+                    </div>
+                </div>
+                <div>
+                    <div class="dataItem">
+                        {{::weapon.totalKills}}
+                    </div>
+                    <div class="dataLabel miniProgressBg">Kills</div>
+                    <div class="miniProgressBar" ng-style="{'width': weapon.killPercent + '%'}"></div>
+                </div>
+                <div>
+                    <div class="dataItem">
+                        {{::weapon.totalHeadshots}}
+                    </div>
+                    <div class="dataLabel miniProgressBg">Headshots</div>
+                    <div class="miniProgressBar" ng-style="{'width': weapon.headShotPercent + '%'}"></div>
+                </div>
+                <div>
+                    <div class="dataItem">
+                        {{::weapon.totalDamageDealt | number : 1}}
+                    </div>
+                    <div class="dataLabel miniProgressBg">Damage Dealt</div>
+                    <div class="miniProgressBar" ng-style="{'width': weapon.totalDamagePercent + '%'}"></div>
+                </div>
+                <div>
+                    <div class="dataItem">
+                        {{::weapon.totalShotsLanded}}
+                    </div>
+                    <div class="dataLabel miniProgressBg">Shots Landed</div>
+                    <div class="miniProgressBar" ng-style="{'width': weapon.shotsLandedPercent + '%'}"></div>
+                </div>
+                <div>
+                    <div class="dataItem">
+                        {{::weapon.totalShotsFired}}
+                    </div>
+                    <div class="dataLabel miniProgressBg">Shots Fired</div>
+                    <div class="miniProgressBar" ng-style="{'width': weapon.shotsFiredPercent + '%'}"></div>
+                </div>
+
+
+                <div>
+                    <div class="dataItem">
+                        {{::weapon.accuracy}}%
+                    </div>
+                    <div class="dataLabel miniProgressBg">Accuracy</div>
+                    <div class="miniProgressBar" ng-style="{'width': weapon.accuracyPercent + '%'}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="dataItem">Medals:</div>
+        <div>
+            <div ng-repeat="classification in player.medals">
+                <div class="dataLabel">
+                    {{::classification.classification | addspace}}
+                </div>
+                <div class="medals">
+                    <div ng-repeat="medal in classification.medalAwards">
+                        <div class="dataItem">
+                            {{::medal.count}}x
+                        </div>
+                        <div>
+                            <div ng-style="{'height':medal.medal.spriteLocation.height+'px','width':medal.medal.spriteLocation.width+'px','background':'url('+medal.medal.spriteLocation.spriteSheetUri+')','background-position-x':'-'+medal.medal.spriteLocation.left + 'px','background-position-y':'-'+medal.medal.spriteLocation.top + 'px'}">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="dataItem">{{::medal.medal.name}}</div>
+                            <div class="dataLabel ">{{::medal.medal.description}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="" ng-click="vm.showDetails(player)">
+        <span><i class="fa fa-minus-square-o" aria-hidden="true"></i> Hide Stats</span>
+    </a>
+
+    <hr />
+</div>

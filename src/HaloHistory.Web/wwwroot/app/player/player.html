@@ -1,0 +1,28 @@
+﻿
+
+<div class="playerView">
+    <div class="title">
+        HALO HISTORY
+    </div>
+    <div class="player">
+
+        <div class="playerImage">
+            <div>
+                <img ng-src="{{vm.player.spartanImageUri}}"/>
+            </div>
+        </div>
+        <div>
+            <div class="dataItem">
+                {{vm.player.gamertag}}
+            </div>
+            <div class="dataLabel"><a href="" ng-click="vm.change()" style="text-transform: none;"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </div>
+    <div ui-view>
+        <div class="dataItem">
+            <a ui-sref="main.player.gameHistory">Game History</a>
+        </div>
+    </div>
+</div>
+

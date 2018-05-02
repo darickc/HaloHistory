@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Halo History</title>
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/css/loading-bar.css" />
+        <link rel="stylesheet" href="~/css/reset.css" />
+        <link rel="stylesheet" href="~/css/font-awesome.css" />
+        <link rel="stylesheet" href="~/css/app.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="~/css/app.min.css" asp-append-version="true" />
+    </environment>
+    <base href="@ViewBag.BaseHref">
+</head>
+<body data-ng-app="cartographer">
+
+    @RenderBody()
+
+
+    <script src="~/js/lib.min.js" asp-append-version="true"></script>
+    <environment names="Development">
+        <script asp-src-include="~/app/**/*.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script asp-src-include="~/js/app.min.js" asp-file-version="true"></script>
+    </environment>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

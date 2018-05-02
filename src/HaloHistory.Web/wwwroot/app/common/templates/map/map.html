@@ -1,0 +1,40 @@
+﻿<div class="map">
+    <img ng-src="{{::match.mapVariantInfoMapImageUrl}}" ng-if="match.mapVariantInfoMapImageUrl"/>
+    <img ng-src="{{::match.mapImageUrl}}" ng-if="!match.mapVariantInfoMapImageUrl" />
+    <div class="mapInfo">
+        <div>
+            <div ng-style="{'mask-image': 'url(' + match.gameVariantInfoIconUrl + ')','-webkit-mask-image': 'url(' + match.gameVariantInfoIconUrl + ')','background': match.playerTeamColor.color}">
+                <!--<img ng-src="{{::match.gameVariantInfoIconUrl}}"/>-->
+            </div>
+            <div>
+                <div>
+                    {{::match.gameVariantInfoName}}
+                </div>
+                <div>
+                    {{::match.playlistName}}
+                </div>
+            </div>
+            <div ng-if="match.mapVariantInfoName">
+                {{::match.mapVariantInfoName}}
+            </div>
+            <div ng-if="!match.mapVariantInfoName">
+                {{::match.mapName}}
+            </div>
+        </div>
+        <div>
+            <div>
+                <img ng-src="{{::match.playerTeamColor.iconUrl}}" />
+            </div>
+            <div ng-switch on="match.player.result">
+                <div ng-switch-when="Won">Victory</div>
+                <div ng-switch-when="Lost">Defeat</div>
+                <div ng-switch-when="Tied">Tied</div>
+                <div ng-switch-default>DNF</div>
+            </div>
+            <div>
+                {{::match.completedDate}} &nbsp;&nbsp;
+                {{::match.matchDuration}}
+            </div>
+        </div>
+    </div>
+</div>
